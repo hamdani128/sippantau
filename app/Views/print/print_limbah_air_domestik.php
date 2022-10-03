@@ -148,12 +148,11 @@
             <h4>Keterangan</h4>
         </div>
         <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            - Baku Mutu PPRI Nomor 22 Tahun 2021
+            - Baku Mutu PPRI Nomor 22 Tahun 2021, Lampiran VI Kelas II Tentang Penyelenggara Perlindungan dan
+            Pengelolaan Lingkungan Hidup.
         </p>
         <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            ** <label style="font-weight: bold;">JUMLAH LIMBAH YANG BELUM DI KELOLA</label>
-            adalah limbah disimpan melebihi skala waktu penataan
-        </p>
+            - Tanda (<) </p>
 </body>
 
 </html>
