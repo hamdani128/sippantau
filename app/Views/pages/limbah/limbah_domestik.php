@@ -52,7 +52,45 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_limbah_domestik">
-
+                            <?php if(count($limbah) > 0) { $no=1;?>
+                            <?php foreach($limbah as $row) : ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td>
+                                    <div class="input-group">
+                                        <a href="#" class="btn btn-sm btn-primary"
+                                            onclick="cetak_print_limbah_domestik('<?php echo $row->register_id ?>')">
+                                            <i class="bx bx-printer"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-danger">
+                                            <i class="bx bx-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <?php if($row->status == 'menunggu approval') { ?>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><?= $row->status; ?> <span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php }else{ ?>
+                                <td>
+                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php } ?>
+                                <td><?= $row->register_id; ?></td>
+                                <td><?= $row->no_sertifikat; ?></td>
+                                <td><?= $row->nama_pemohon; ?></td>
+                                <td><?= $row->alamat_pemohon; ?></td>
+                                <td><?= $row->lokasi_kegiatan; ?></td>
+                                <td><?= $row->contoh_uji; ?></td>
+                                <td><?= $row->tanggal_contoh_uji; ?></td>
+                                <td><?= $row->titik_uji; ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

@@ -64,7 +64,8 @@
                                 <td><?php echo $row->updated_at; ?></td>
                                 <td>
                                     <div class="input-group">
-                                        <a href="#" class="btn btn-sm btn-primary">
+                                        <a href="#" class="btn btn-sm btn-primary"
+                                            onclick="cetak_print_limbahb3('<?php echo $row->id_register ?>')">
                                             <i class="bx bx-printer"></i>
                                         </a>
                                         <a href="#" class="btn btn-sm btn-danger">

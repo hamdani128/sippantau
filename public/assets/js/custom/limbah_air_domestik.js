@@ -138,3 +138,7 @@ function insert_data_detail_air_domestik() {
         });
     }
 }
+
+function cetak_print_limbah_domestik(register_id,) {
+    window.open('/pages/limbah_air_domestik/print/' + register_id + '');
+}

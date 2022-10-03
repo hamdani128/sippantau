@@ -98,12 +98,15 @@ class Master1 extends BaseController
         $UserInfo = $userModel->find($loggedUserID);
         $parameter = $this->db->table('parameter_limbah')->where('jenis_limbah', 'Limbah Kualitas Air')->get()->getResultObject();
         $metoda = $this->db->table('metoda')->get()->getResultObject();
+        $limbah = $this->db->table('limbah_air_domestik')->where('user_id', $UserInfo['id'])->get()->getResultObject();
+        // $detail_limbah = $this->db->table('limbah_air_domestik_detail')->where('user_id', $UserInfo['id'])->get()->getResultObject();
         $data = [
             'title' => 'Limbah Air Domestik - Sippantau App',
             'userinfo' => $UserInfo,
             'page' => 'admin-limbah_air_domestik',
             'parameter' => $parameter,
             'metoda' => $metoda,
+            'limbah' => $limbah,
         ];
         return view('pages/limbah/limbah_domestik', $data);
     }
@@ -222,5 +225,27 @@ class Master1 extends BaseController
         return view('pages/admin_limbah/limbah_domestik', $data);
     }
 
+    
+    public function limbah_b3_print($id_registrasi)
+    {   
+        $limbah = $this->db->table('limbah_b3')->where('id_register', $id_registrasi)->get()->getRowObject();
+        $detail_limbah = $this->db->table('limbah_b3_detail')->where('id_register', $id_registrasi)->get()->getResultObject();
+        $data = [
+            'limbah_b3' => $detail_limbah,
+            'limbah' => $limbah,
+        ];
+        return view('/print/print_limbahb3', $data);
+    }
+
+    public function limbah_air_domestik_print($register_id)
+    {
+        $limbah = $this->db->table('limbah_air_domestik')->where('register_id', $register_id)->get()->getRowObject();
+        $limbah_detail = $this->db->table('limbah_air_domestik_detail')->where('register_id', $register_id)->get()->getResultObject();
+        $data = [
+            'limbah' => $limbah,
+            'detail_limbah' => $limbah_detail,
+        ];
+        return view('/print/print_limbah_air_domestik', $data);
+    }
 
 }

@@ -85,3 +85,8 @@ function InsertDetailLimbahB3() {
         });
     }
 }
+
+function cetak_print_limbahb3(no_register) {
+    window.open('/pages/limbah_b3/print/' + no_register + '');
+    // window.open("https://www.w3schools.com");
+}

@@ -43,7 +43,9 @@ $routes->get('/users/logout', 'AuthController::logout');
 $routes->post('/registrasilab/insert_detail_registrasilab', 'Landing::insert_detail_registrasilab');
 $routes->post('/registrasilab/insert_registrasilab', 'Landing::insert_registrasilab');
 $routes->get('/registrasilab/print_dokumen_registrasilab/(:any)', 'Master1::cetak_dokumen/$1');
-
+// print
+$routes->get('/pages/limbah_b3/print/(:any)', 'Master1::limbah_b3_print/$1');
+$routes->get('/pages/limbah_air_domestik/print/(:any)', 'Master1::limbah_air_domestik_print/$1');
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('/', 'Home::index');
     $routes->get('/pages/master_register', 'Master1::index');
