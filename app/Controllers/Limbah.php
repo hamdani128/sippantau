@@ -289,5 +289,24 @@ class Limbah extends BaseController
             return json_encode($response);
         }
 
+        public function delete_limbah_air_kegiatan()
+        {
+            $register_id = $this->request->getpost('register_id');
+            $query1 = $this->db->table('limbah_air_kegiatan')->where('register_id', $register_id)->delete();
+            $query2 = $this->db->table('limbah_air_kegiatan_detail')->where('register_id', $register_id)->delete();
+            if($query1 && $query2){
+                $response = [
+                    'message' => 'Data Berhasil Dihapus !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
 
 }

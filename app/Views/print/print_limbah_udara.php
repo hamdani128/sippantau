@@ -86,7 +86,7 @@
         <div class="hr2"></div>
         <h5
             style="text-align: center;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-            HASIL PENGUJIAN KUALITAS AIR </h5>
+            HASIL PENGUJIAN KUALITAS UDARA </h5>
         <table style="border: 1px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
             <tr>
                 <td>No.Sertifikat </td>
@@ -152,20 +152,13 @@
         </div>
         <div style="margin-top: - 2px;">
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                - Baku Mutu PPRI Nomor 22 Tahun 2021, Lampiran VI Kelas II Tentang Penyelenggara Perlindungan dan
-                Pengelolaan Lingkungan Hidup.
+                - PerMenLHK RI No. P.15/MENLHK/SETJEN/KUM.14/2019, Lampiran VI Tentang
+                Baku Mutu Emisi Pembangkit Listrik Tenaga Biomassa (PLTBm) Berbahan Bakar Serabut dan/atau
+                Cangkang
             </p>
             <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                - Tanda (<) menunjukan hasil dibawah limit deteksi </p>
-                    <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                        - Tanda (*) Sudah Termasuk Lingkup KAN.
-                    </p>
-                    <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                        - Tanda (**) Parameter Subkon
-                    </p>
-                    <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                        Parameter Institu ( Temperatur, pH dan DO) Diuji di laboratorium
-                    </p>
+                - Tanda (*) sudah termasuk lingkup KAN.
+            </p>
         </div>
 </body>
 

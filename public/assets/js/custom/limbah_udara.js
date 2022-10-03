@@ -99,3 +99,7 @@ function insert_detail_limbah_udara() {
         });
     }
 }
+
+function cetak_print_limbah_udara(register_id) {
+    window.open('/pages/limbah_emisi_udara/print/' + register_id + '');
+}

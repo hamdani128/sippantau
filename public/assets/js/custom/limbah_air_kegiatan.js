@@ -101,3 +101,41 @@ function insert_data_detail_air_kegiatan() {
         });
     }
 }
+
+function cetak_print_limbah_air_kegiatan(register_id) {
+    window.open('/pages/limbah_air_kegiatan/print/' + register_id + '');
+}
+
+function hapus_limbah_air_kegiatan(register_id) {
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Anda akan menghapus data " + register_id,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "/limbah_air_kegiatan/delete",
+                method: "POST",
+                data: {
+                    register_id: register_id,
+                },
+                // dataType: "JSON",
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus!',
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    });
+}

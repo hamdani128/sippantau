@@ -50,7 +50,9 @@
                     <table id="example" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>No</th>
+                                <th>Keterangan</th>
                                 <th>ID</th>
                                 <th>No.Sertifikat</th>
                                 <th>Nama Pemohon</th>
@@ -59,8 +61,7 @@
                                 <th>Jenis Contoh Uji</th>
                                 <th>Tanggal Contoh Uji Diterima</th>
                                 <th>Titik Pengambilan Contoh Uji</th>
-                                <th>Keterangan</th>
-                                <th>#</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -68,7 +69,32 @@
                             <?php $no=1; ?>
                             <?php foreach($limbah  as $row): ?>
                             <tr>
-                                <td><?php echo $no++ ?></td>
+                                <td>
+                                    <div class="input-group">
+                                        <a href="#" class="btn btn-sm btn-primary"
+                                            onclick="cetak_print_limbah_air_kegiatan('<?php echo $row->register_id ?>')">
+                                            <i class="bx bx-printer"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-danger"
+                                            onclick="hapus_limbah_air_kegiatan('<?php echo $row->register_id ?>')">
+                                            <i class="bx bx-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td style="text-align: center;"><?php echo $no++ ?></td>
+                                <?php if($row->status == 'menunggu approval') { ?>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><?= $row->status; ?> <span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php }else{ ?>
+                                <td>
+                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php } ?>
                                 <td><?php echo $row->register_id; ?></td>
                                 <td><?php echo $row->no_sertifikat ?></td>
                                 <td><?php echo $row->nama_pemohon ?></td>
@@ -77,18 +103,7 @@
                                 <td><?php echo $row->contoh_uji ?></td>
                                 <td><?php echo $row->tanggal_contoh_uji ?></td>
                                 <td><?php echo $row->titik_uji ?></td>
-                                <td>
-                                    <?php  if( $row->status == 'menunggu approval') :  ?>
-                                    <span class="badge bg-warning text-dark"><?php echo $row->status ?></span>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-success">
-                                        <i class="bx bx-printer"></i>
-                                        Print
-                                    </a>
-                                    <!-- <a href="#" class="btn btn-sm btn-danger">Delete</a> -->
-                                </td>
+
                             </tr>
                             <?php endforeach ?>
                             <?php } ?>

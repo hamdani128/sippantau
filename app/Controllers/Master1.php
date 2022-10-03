@@ -248,4 +248,26 @@ class Master1 extends BaseController
         return view('/print/print_limbah_air_domestik', $data);
     }
 
+    function limbah_air_kegiatan_print($register_id)
+    {
+        $limbah = $this->db->table('limbah_air_kegiatan')->where('register_id', $register_id)->get()->getRowObject();
+        $limbah_detail = $this->db->table('limbah_air_kegiatan_detail')->where('register_id', $register_id)->get()->getResultObject();
+        $data = [
+            'limbah' => $limbah,
+            'detail_limbah' => $limbah_detail,
+        ];
+        return view('/print/print_limbah_air_kegiatan', $data);
+    }
+
+    public function limbah_udara_print($register_id)
+    {
+        $limbah = $this->db->table('limbah_udara')->where('register_id', $register_id)->get()->getRowObject();
+        $limbah_detail = $this->db->table('limbah_udara_detail')->where('register_id', $register_id)->get()->getResultObject();
+        $data = [
+            'limbah' => $limbah,
+            'detail_limbah' => $limbah_detail,
+        ];
+        return view('/print/print_limbah_udara', $data);
+    }
+
 }

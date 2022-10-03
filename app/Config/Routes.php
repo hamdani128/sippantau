@@ -46,6 +46,9 @@ $routes->get('/registrasilab/print_dokumen_registrasilab/(:any)', 'Master1::ceta
 // print
 $routes->get('/pages/limbah_b3/print/(:any)', 'Master1::limbah_b3_print/$1');
 $routes->get('/pages/limbah_air_domestik/print/(:any)', 'Master1::limbah_air_domestik_print/$1');
+$routes->get('/pages/limbah_air_kegiatan/print/(:any)', 'Master1::limbah_air_kegiatan_print/$1');
+$routes->get('/pages/limbah_emisi_udara/print/(:any)', 'Master1::limbah_udara_print/$1');
+
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('/', 'Home::index');
     $routes->get('/pages/master_register', 'Master1::index');
@@ -78,6 +81,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     // Limbah Air Kegiatan
     $routes->post('/limbah1/insert_limbah_air_kegiatan', 'Limbah::insert_limbah_air_kegiatan');
     $routes->post('/limbah1/insert_data_detail_air_kegiatan', 'Limbah::insert_data_detail_air_kegiatan');
+    $routes->post('/limbah_air_kegiatan/delete', 'Limbah::delete_limbah_air_kegiatan');
     // Limbah Udara
     $routes->post('/limbah1/insert_limbah_udara', 'Limbah::insert_limbah_udara');
     $routes->post('/limbah1/insert_detail_emisi_udara', 'Limbah::insert_detail_emisi_udara');

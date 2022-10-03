@@ -86,7 +86,7 @@
         <div class="hr2"></div>
         <h5
             style="text-align: center;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-            HASIL PENGUJIAN KUALITAS AIR </h5>
+            HASIL PENGUJIAN KUALITAS AIR KEGIATAN </h5>
         <table style="border: 1px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
             <tr>
                 <td>No.Sertifikat </td>
