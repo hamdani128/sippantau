@@ -308,5 +308,145 @@ class Limbah extends BaseController
             return json_encode($response);
         }
 
+        public function delete_limbah_air_domestik()
+        {
+            $register_id = $this->request->getPost('register_id');
+            $query1 = $this->db->table('limbah_air_domestik')->where('register_id', $register_id)->delete();
+            $query2 = $this->db->table('limbah_air_domestik_detail')->where('register_id', $register_id)->delete();
+            if($query1 && $query2){
+                $response = [
+                    'message' => 'Data Berhasil Dihapus !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function delete_limbah_emisi_udara()
+        {
+            $register_id = $this->request->getPost('register_id');
+            $query1 = $this->db->table('limbah_udara')->where('register_id', $register_id)->delete();
+            $query2 = $this->db->table('limbah_udara_detail')->where('register_id', $register_id)->delete();
+            if($query1 && $query2){
+                $response = [
+                    'message' => 'Data Berhasil Dihapus !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function delete_limbah_b3()
+        {
+            $register_id = $this->request->getPost('register_id');
+            $query1 = $this->db->table('limbah_b3')->where('id_register', $register_id)->delete();
+            $query2 = $this->db->table('limbah_b3_detail')->where('id_register', $register_id)->delete();
+            if($query1 && $query2){
+                $response = [
+                    'message' => 'Data Berhasil Dihapus !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function update_status_limbah_air_domestik()
+        {
+            $register_id = $this->request->getPostGet('register_id');
+            $data = [
+                'status' => 'approval',
+            ];
+            $query1 = $this->db->table('limbah_air_domestik')->where('register_id', $register_id)->update($data);
+            if ($query1){
+                $response = [
+                    'message' => 'Data Berhasil Approval !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function update_status_limbah_air_kegiatan()
+        {
+            $register_id = $this->request->getPostGet('register_id');
+            $data = [
+                'status' => 'approval',
+            ];
+            $query1 = $this->db->table('limbah_air_kegiatan')->where('register_id', $register_id)->update($data);
+            if ($query1){
+                $response = [
+                    'message' => 'Data Berhasil Approval !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function update_status_limbah_emisi_udara()
+        {
+            $register_id = $this->request->getPostGet('register_id');
+            $data = [
+                'status' => 'approval',
+            ];
+            $query1 = $this->db->table('limbah_udara')->where('register_id', $register_id)->update($data);
+            if ($query1){
+                $response = [
+                    'message' => 'Data Berhasil Approval !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
+
+        public function update_status_limbah_b3()
+        {
+            $register_id = $this->request->getPostGet('register_id');
+            $data = [
+                'status' => 'approval',
+            ];
+            $query1 = $this->db->table('limbah_b3')->where('id_register', $register_id)->update($data);
+            if ($query1){
+                $response = [
+                    'message' => 'Data Berhasil Approval !',
+                    'status' => 'success',
+                ];
+            }else{
+                $response = [
+                    'message' => 'Problem with Processing !',
+                    'status' => 'error',
+                ];
+            }
+            return json_encode($response);
+        }
 
 }

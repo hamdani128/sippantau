@@ -82,20 +82,27 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->post('/limbah1/insert_limbah_air_kegiatan', 'Limbah::insert_limbah_air_kegiatan');
     $routes->post('/limbah1/insert_data_detail_air_kegiatan', 'Limbah::insert_data_detail_air_kegiatan');
     $routes->post('/limbah_air_kegiatan/delete', 'Limbah::delete_limbah_air_kegiatan');
+    $routes->post('/limbah_air_kegiatan/update_status', 'Limbah::update_status_limbah_air_kegiatan');
     // Limbah Udara
     $routes->post('/limbah1/insert_limbah_udara', 'Limbah::insert_limbah_udara');
     $routes->post('/limbah1/insert_detail_emisi_udara', 'Limbah::insert_detail_emisi_udara');
+    $routes->post('/limbah_emisi_udara/delete', 'Limbah::delete_limbah_emisi_udara');
+    $routes->post('/limbah_emisi_udara/update_status', 'Limbah::update_status_limbah_emisi_udara');
     // Limbah B3
     $routes->post('/limbah1/insert_limbah_b3', 'Limbah::insert_limbah_b3');
     $routes->post('/limbah1/insert_detail_limbah_b3', 'Limbah::insert_detail_limbah_b3');
+    $routes->post('/limbah_b3/delete', 'Limbah::delete_limbah_b3');
+    $routes->post('/limbah_b3/update_status', 'Limbah::update_status_limbah_b3');
     // Domestik
     $routes->post('/limbah/insert_data_detail_air_domestik', 'Limbah::insert_detail_limbah_domestik');
     $routes->post('/limbah/insert_limbah_air_domestik', 'Limbah::insert_limbah_air_domestik');
-
+    $routes->post('/limbah_air_domestik/delete', 'Limbah::delete_limbah_air_domestik');
+    $routes->post('/limbah_air_domestik/update_status', 'Limbah::update_status_limbah_air_domestik');
     // Filter Routes
     $routes->post('/admin_limbah/filter_limbah_air_kegiatan', 'Adminlimbah::filter_limbah_air_kegiatan');
     $routes->post('/admin_limbah/filter_limbah_emisi_udara', 'Adminlimbah::filter_limbah_emisi_udara');
-    
+    $routes->post('/admin_limbah/filter_limbah_air_domestik', 'Adminlimbah::filter_limbah_air_domestik');
+    $routes->post('/admin_limbah/filter_limbah_b3', 'Adminlimbah::filter_limbah_b3');
 });
 
 /*

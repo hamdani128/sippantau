@@ -185,7 +185,9 @@
     <script src="<?php echo base_url() ?>/assets/js/custom/bukumutu.js"></script>
     <script src="<?php echo base_url() ?>/assets/js/custom/metoda.js"></script>
     <script src="<?php echo base_url() ?>/assets/js/custom/limbahb3.js"></script>
-    <script src="<?php echo base_url() ?>/assets/js/custom/admin_limbah_air_kegiatan.js"></script>
+    <script src="<?php echo base_url() ?>/assets/js/custom/admin_filter.js"></script>
+
+
 </body>
 <!-- Mirrored from codervent.com/rocker/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jun 2022 08:03:48 GMT -->
 

@@ -38,15 +38,15 @@
                     <table id="example" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>No</th>
+                                <th>Keterangan</th>
                                 <th>ID</th>
                                 <th>date</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Bidang Usaha</th>
                                 <th>Periode</th>
-                                <th>Keterangan</th>
                                 <th>created_at</th>
-                                <th>#Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,25 +54,38 @@
                             <?php $no=1; ?>
                             <?php foreach($limbah as $row) : ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $row->id_register ?></td>
-                                <td><?php echo $row->date; ?></td>
-                                <td><?php echo $row->nama_perusahaan ?></td>
-                                <td><?php echo $row->bidang ?></td>
-                                <td><?php echo $row->periode ?></td>
-                                <td><?php echo $row->status ?></td>
-                                <td><?php echo $row->updated_at; ?></td>
                                 <td>
                                     <div class="input-group">
                                         <a href="#" class="btn btn-sm btn-primary"
                                             onclick="cetak_print_limbahb3('<?php echo $row->id_register ?>')">
                                             <i class="bx bx-printer"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-danger">
+                                        <a href="#" class="btn btn-sm btn-danger"
+                                            onclick="delete_limbah_b3('<?php echo $row->id_register ?>')">
                                             <i class="bx bx-trash"></i>
                                         </a>
                                     </div>
                                 </td>
+                                <td><?php echo $no++; ?></td>
+                                <?php if($row->status == 'menunggu approval') { ?>
+                                <td>
+                                    <button type="button" class="btn btn-warning"><?= $row->status; ?> <span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php }else{ ?>
+                                <td>
+                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                            class="badge bg-dark"></span>
+                                    </button>
+                                </td>
+                                <?php } ?>
+                                <td><?php echo $row->id_register ?></td>
+                                <td><?php echo $row->date; ?></td>
+                                <td><?php echo $row->nama_perusahaan ?></td>
+                                <td><?php echo $row->bidang ?></td>
+                                <td><?php echo $row->periode ?></td>
+                                <td><?php echo $row->updated_at; ?></td>
                                 <?php endforeach; ?>
                                 <?php } ?>
                         </tbody>

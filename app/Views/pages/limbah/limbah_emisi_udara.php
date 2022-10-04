@@ -74,7 +74,8 @@
                                             onclick="cetak_print_limbah_udara('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-printer"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-danger">
+                                        <a href="#" class="btn btn-sm btn-danger"
+                                            onclick="delete_limbah_udara('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-trash"></i>
                                         </a>
                                     </div>

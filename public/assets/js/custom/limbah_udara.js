@@ -103,3 +103,37 @@ function insert_detail_limbah_udara() {
 function cetak_print_limbah_udara(register_id) {
     window.open('/pages/limbah_emisi_udara/print/' + register_id + '');
 }
+
+function delete_limbah_udara(register_id) {
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Anda akan menghapus data " + register_id,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "/limbah_emisi_udara/delete",
+                method: "POST",
+                data: {
+                    register_id: register_id,
+                },
+                // dataType: "JSON",
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus!',
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    });
+}

@@ -33,7 +33,7 @@
                             <label for="" class="form-label">Sampai</label>
                             <div class="input-group">
                                 <input type="date" name="sampai_domestik" id="sampai_domestik" class="form-control">
-                                <button class="btn btn-primary btn-md" onclick="filter_admin_limbah_air_domestik()">
+                                <button class="btn btn-primary btn-md" onclick="filter1()">
                                     <i class="bx bx-filter"></i>
                                 </button>
                             </div>
@@ -45,21 +45,22 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example" class="table table-striped table-bordered" style="width: 100%;">
+                    <table class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>ID</th>
-                                <th>No.Sertifikat</th>
-                                <th>Nama Pemohon</th>
-                                <th>Alamat Pemohon</th>
-                                <th>Lokasi Kegiatan</th>
-                                <th>Jenis Contoh Uji</th>
-                                <th>Tanggal Contoh Uji Diterima</th>
-                                <th>Titik Pengambilan Contoh Uji</th>
-                            </tr>
+                            <th>#aksi</th>
+                            <th>No</th>
+                            <th>Keterangan</th>
+                            <th>ID Perusahaan</th>
+                            <th>ID Register</th>
+                            <th>No.Sertifikat</th>
+                            <th>Nama Pemohon</th>
+                            <th>Alamat Pemohon</th>
+                            <th>Lokasi Kegiatan</th>
+                            <th>Jenis Contoh Uji</th>
+                            <th>Tanggal Contoh Uji Diterima</th>
+                            <th>Titik Pengambilan Contoh Uji</th>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody_air_domestik">
 
                         </tbody>
                     </table>
@@ -70,4 +71,8 @@
 </div>
 <!-- Enda Page wrapper -->
 
+
+<!-- Modal -->
+
+<!-- End Modal -->
 <?= $this->EndSection(); ?>

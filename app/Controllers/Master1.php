@@ -25,7 +25,7 @@ class Master1 extends BaseController
         $register = $this->db->table('registrasi_lab')->get()->getResultObject();
         $data = [
             'title' => 'Register - Sippantau App',
-            'userinfo' => $UserInfo,
+        'userinfo' => $UserInfo,
             'page' => 'admin-registerlab',
             'registrasi' => $register,
         ];
@@ -208,7 +208,7 @@ class Master1 extends BaseController
             'page' => 'admin-limbah_b3',
             
         ];
-        return view('pages/admin_limbah/limbah_emisi_udara', $data);
+        return view('pages/admin_limbah/limbah_b3', $data);
     }
 
     public function limbah_air_domestik_admin()

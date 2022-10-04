@@ -35,7 +35,7 @@
                             <label for="" class="form-label">Sampai</label>
                             <div class="input-group">
                                 <input type="date" name="sampai_limbah_b3" id="sampai_limbah_b3" class="form-control">
-                                <button class="btn btn-primary btn-md" onclick="filter_admin_limbah_b3()">
+                                <button class="btn btn-primary btn-md" onclick="filter4()">
                                     <i class="bx bx-filter"></i>
                                 </button>
                             </div>
@@ -50,17 +50,19 @@
                     <table id="example" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>No</th>
+                                <th>Keterangan</th>
+                                <th>ID Perusahaan</th>
                                 <th>ID</th>
                                 <th>date</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Bidang Usaha</th>
                                 <th>Periode</th>
                                 <th>created_at</th>
-                                <th>#Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody_limbah_b3">
 
                         </tbody>
                     </table>

@@ -26,15 +26,16 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="" class="form-label">Mulai</label>
-                            <input type="date" name="mulai_date" id="mulai_date" class="form-control">
+                            <input type="date" name="mulai_air_kegiatan" id="mulai_air_kegiatan" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="form-label">Sampai</label>
                             <div class="input-group">
-                                <input type="date" name="sampai_date" id="sampai_date" class="form-control">
-                                <button class="btn btn-primary btn-md" onclick="filter_admin_limbah_air_kegiatan()">
+                                <input type="date" name="sampai_air_kegiatan" id="sampai_air_kegiatan"
+                                    class="form-control">
+                                <button class="btn btn-primary btn-md" onclick="filter2()">
                                     <i class="bx bx-filter"></i>
                                 </button>
                             </div>
@@ -49,10 +50,11 @@
                     <table id="example" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>#aksi</th>
                                 <th>No</th>
-                                <th>ID Username</th>
-                                <th>ID</th>
+                                <th>Keterangan</th>
+                                <th>ID Perusahaan</th>
+                                <th>ID Register</th>
                                 <th>No.Sertifikat</th>
                                 <th>Nama Pemohon</th>
                                 <th>Alamat Pemohon</th>
@@ -60,10 +62,9 @@
                                 <th>Jenis Contoh Uji</th>
                                 <th>Tanggal Contoh Uji Diterima</th>
                                 <th>Titik Pengambilan Contoh Uji</th>
-                                <th>Keterangan</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody_limbah_air_kegiatan">
 
                         </tbody>
                     </table>

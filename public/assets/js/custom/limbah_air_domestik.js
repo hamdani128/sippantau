@@ -40,7 +40,7 @@ function loadDataLimbahDomestik() {
         }
     });
 }
-loadDataLimbahDomestik();
+// loadDataLimbahDomestik();
 
 function tambah_baris_limbah_air_domestik() {
     var cmb_paramter = document.getElementById("parameter");
@@ -141,4 +141,38 @@ function insert_data_detail_air_domestik() {
 
 function cetak_print_limbah_domestik(register_id,) {
     window.open('/pages/limbah_air_domestik/print/' + register_id + '');
+}
+
+function delete_limbah_domestik(register_id) {
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Anda akan menghapus data " + register_id,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "/limbah_air_domestik/delete",
+                method: "POST",
+                data: {
+                    register_id: register_id,
+                },
+                // dataType: "JSON",
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus!',
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    });
 }

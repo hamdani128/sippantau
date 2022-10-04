@@ -88,5 +88,38 @@ function InsertDetailLimbahB3() {
 
 function cetak_print_limbahb3(no_register) {
     window.open('/pages/limbah_b3/print/' + no_register + '');
-    // window.open("https://www.w3schools.com");
+}
+
+function delete_limbah_b3(register_id) {
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Anda akan menghapus data " + register_id,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "/limbah_b3/delete",
+                method: "POST",
+                data: {
+                    register_id: register_id,
+                },
+                // dataType: "JSON",
+                success: function (data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus!',
+                    }).then((result) => {
+                        if (result.value) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    });
 }
