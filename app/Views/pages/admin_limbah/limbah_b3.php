@@ -72,5 +72,28 @@
     </div>
 </div>
 <!-- Enda Page wrapper -->
+<!-- Modal show Detail Scanner -->
+<div id="modal-scan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">File - Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <embed id="element-domestik" frameborder="0" width="100%" height="1000
+                        px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
 
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->EndSection(); ?>

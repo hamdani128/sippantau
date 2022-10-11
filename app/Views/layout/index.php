@@ -12,6 +12,8 @@
     <link href="<?php echo base_url() ?>/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="<?php echo base_url() ?>/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
     <link href="<?php echo base_url() ?>/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet" />
+    <link href="<?php echo base_url() ?>/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet" />
 
     <!-- loader-->
     <link href="<?php echo base_url() ?>/assets/css/pace.min.css" rel="stylesheet" />
@@ -186,8 +188,20 @@
     <script src="<?php echo base_url() ?>/assets/js/custom/metoda.js"></script>
     <script src="<?php echo base_url() ?>/assets/js/custom/limbahb3.js"></script>
     <script src="<?php echo base_url() ?>/assets/js/custom/admin_filter.js"></script>
-
-
+    <!-- upload -->
+    <script src="<?php echo base_url() ?>/assets/plugins/fancy-file-uploader/jquery.ui.widget.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/fancy-file-uploader/jquery.iframe-transport.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+    <script>
+    $('#fancy-file-upload').FancyFileUpload({
+        params: {
+            action: 'fileuploader'
+        },
+        maxfilesize: 1000000
+    });
+    </script>
 </body>
 <!-- Mirrored from codervent.com/rocker/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jun 2022 08:03:48 GMT -->
 

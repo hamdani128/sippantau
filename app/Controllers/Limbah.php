@@ -48,6 +48,12 @@ class Limbah extends BaseController
             $loggedUserID = session()->get('loggedUser');
             $UserInfo = $userModel->find($loggedUserID);
             $id_register = $this->limbah->getIDRegisterLimbahAir();
+            $files = $_FILES['dokumen2'];
+            $tindakan_penanganan = $this->request->getPost('tindakan_penanganan');
+            $randomFileName = rand(1, 1000000);
+            $ext = pathinfo($files['name'], PATHINFO_EXTENSION);
+            $fileNameRand = $files['name'];
+            move_uploaded_file($files['tmp_name'], 'upload/'. $fileNameRand);
             $data = [
                 'register_id' => $id_register,
                 'no_sertifikat' => $this->request->getPost('no_sertifikat'),
@@ -57,6 +63,8 @@ class Limbah extends BaseController
                 'contoh_uji' => $this->request->getPost('jenis_contoh'),
                 'tanggal_contoh_uji' => $this->request->getPost('tanggal_contoh'),
                 'titik_uji' => $this->request->getPost('titik_contoh'),
+                'file_name' => $fileNameRand,
+                'tindakan' => $tindakan_penanganan,
                 'status' => 'menunggu approval',
                 'user_id' => $UserInfo['id'],
                 'created_at' => date('y-m-d H:i:s'),
@@ -107,16 +115,24 @@ class Limbah extends BaseController
             $UserInfo = $userModel->find($loggedUserID);
             $user_id = $UserInfo['id'];
             $id_register = $this->limbah->getIDRegisterLimbahUdara();
+            $files = $_FILES['dokumen3'];
+            $tindakan_penanganan = $this->request->getPost('tindakan_penanganan');
+            // $randomFileName = rand(1, 1000000);
+            $ext = pathinfo($files['name'], PATHINFO_EXTENSION);
+            $fileNameRand = $files['name'];
+            move_uploaded_file($files['tmp_name'], 'upload/'. $fileNameRand);
             // echo $id_register;
             $data = [
                 'register_id' => $id_register,
-                'no_sertifikat' => $_POST['no_sertifikat'],
-                'nama_pemohon' => $_POST['nama_pemohon'],
-                'alamat_pemohon' => $_POST['alamat_pemohon'],
-                'lokasi_kegiatan' => $_POST['lokasi'],
-                'contoh_uji' => $_POST['jenis_contoh'],
-                'tanggal_contoh_uji' => $_POST['tanggal_contoh'],
-                'titik_uji' => $_POST['titik_contoh'],
+                'no_sertifikat' => $this->request->getPost('no_sertifikat_udara'),
+                'nama_pemohon' => $this->request->getPost('nama_pemohon_udara'),
+                'alamat_pemohon' => $this->request->getPost('alamat_pemohon_udara'),
+                'lokasi_kegiatan' => $this->request->getPost('lokasi_udara'),
+                'contoh_uji' => $this->request->getPost('jenis_contoh_udara'),
+                'tanggal_contoh_uji' => $this->request->getPost('tanggal_contoh_udara'),
+                'titik_uji' => $this->request->getPost('titik_contoh_udara'),
+                'file_name' => $fileNameRand,
+                'tindakan' => $tindakan_penanganan,
                 'status' => 'menunggu approval',
                 'user_id' => $user_id,
                 'created_at' => date('y-m-d H:i:s'),
@@ -182,7 +198,13 @@ class Limbah extends BaseController
             $periode_sampai = $this->request->getPost('periode_sampai');
             $created_at = date('y-m-d H:i:s');
             $updated_at = date('y-m-d H:i:s');
-
+            $files = $_FILES['dokumen4'];
+            $tindakan_penanganan = $this->request->getPost('tindakan_penanganan');
+            // $randomFileName = rand(1, 1000000);
+            $ext = pathinfo($files['name'], PATHINFO_EXTENSION);
+            $fileNameRand = $files['name'];
+            move_uploaded_file($files['tmp_name'], 'upload/'. $fileNameRand);
+            
             $data = [
                 'id_register' => $id_register,
                 'date' => date('y-m-d'),
@@ -191,6 +213,8 @@ class Limbah extends BaseController
                 'periode' => $periode_mulai . " to " . $periode_sampai,
                 'status' => 'menunggu approval',
                 'user_id' => $user_id,
+                'file_name' => $fileNameRand,
+                'tindakan' => $tindakan_penanganan,
                 'created_at' => $created_at,
                 'updated_at' => $updated_at
             ];
@@ -260,7 +284,13 @@ class Limbah extends BaseController
             $register_id = $this->limbah->getIDRegisterLimbahDomestik();
             $created_at = date('y-m-d H:i:s');
             $updated_at = date('y-m-d H:i:s');
-
+            $files = $_FILES['dokumen1'];
+            $tindakan_penanganan = $this->request->getPost('tindakan_penanganan');
+            $randomFileName = rand(1, 1000000);
+            $ext = pathinfo($files['name'], PATHINFO_EXTENSION);
+            $fileNameRand = $files['name'];
+            move_uploaded_file($files['tmp_name'], 'upload/'. $fileNameRand);
+            
             $data = [
                 'register_id' => $register_id,
                 'no_sertifikat' => $no_sertifikat,
@@ -270,11 +300,13 @@ class Limbah extends BaseController
                 'contoh_uji' => $jenis_contoh,
                 'tanggal_contoh_uji' => $tanggal_contoh,
                 'titik_uji' => $titik_contoh,
+                'file_name' => $fileNameRand,
+                'tindakan' => $tindakan_penanganan,
                 'status' => 'menunggu approval',
                 'user_id' => $user_id,
                 'created_at' => $created_at,
                 'updated_at' => $updated_at,
-            ];
+            ];  
 
             $query = $this->db->table('limbah_air_domestik')->insert($data);
             if($query){

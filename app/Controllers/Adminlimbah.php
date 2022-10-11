@@ -24,17 +24,19 @@ class Adminlimbah extends BaseController
                     a.id as id,
                     b.username as username,
                     a.register_id as register_id,
-                    a.date as sertifikat,
+                    a.no_sertifikat as sertifikat,
                     a.nama_pemohon as nama_pemohon,
                     a.alamat_pemohon as alamat_pemohon,
                     a.lokasi_kegiatan as lokasi_kegiatan,
                     a.contoh_uji as contoh_uji,
                     a.tanggal_contoh_uji as tanggal_contoh_uji,
                     a.titik_uji as titik_uji,
+                    a.file_name as file_name,
+                    a.tindakan as tindakan,
                     a.status as status
                     FROM limbah_air_domestik a 
                     LEFT JOIN cdpm_users b ON a.user_id = b.id
-                    WHERE a.created_at BETWEEN '" . $mulai . "' AND '" . $sampai . "'" ;
+                    WHERE DATE(a.created_at) BETWEEN '" . $mulai . "' AND '" . $sampai . "'" ;
         $query = $this->db->query($SQL)->getResultObject();
         if(count($query) > 0){
             foreach ($query as  $row) {
@@ -55,17 +57,19 @@ class Adminlimbah extends BaseController
                     a.id as id,
                     b.username as username,
                     a.register_id as register_id,
-                    a.date as sertifikat,
+                    a.no_sertifikat as sertifikat,
                     a.nama_pemohon as nama_pemohon,
                     a.alamat_pemohon as alamat_pemohon,
                     a.lokasi_kegiatan as lokasi_kegiatan,
                     a.contoh_uji as contoh_uji,
                     a.tanggal_contoh_uji as tanggal_contoh_uji,
                     a.titik_uji as titik_uji,
+                    a.file_name as file_name,
+                    a.tindakan as tindakan,
                     a.status as status
                     FROM limbah_air_kegiatan a 
                     LEFT JOIN cdpm_users b ON a.user_id = b.id
-                    WHERE a.created_at BETWEEN '" . $mulai . "' AND '" . $sampai . "'" ;
+                    WHERE DATE(a.created_at) BETWEEN '" . $mulai . "' AND '" . $sampai . "'" ;
         $query = $this->db->query($SQL)->getResultObject();
         if(count($query) > 0){
             foreach ($query as  $row) {
@@ -93,6 +97,8 @@ class Adminlimbah extends BaseController
                     a.contoh_uji as contoh_uji,
                     a.tanggal_contoh_uji as tanggal_contoh_uji,
                     a.titik_uji as titik_uji,
+                    a.file_name as file_name,
+                    a.tindakan as tindakan,
                     a.status as status
                     FROM limbah_udara a 
                     LEFT JOIN cdpm_users b ON a.user_id = b.id
@@ -121,6 +127,8 @@ class Adminlimbah extends BaseController
                     a.nama_perusahaan as nama_perusahaan,
                     a.bidang as bidang,
                     a.periode as periode,
+                    a.file_name as file_name,
+                    a.tindakan as tindakan,
                     a.created_at as created_at,
                     a.status as status
                     FROM limbah_b3 a 

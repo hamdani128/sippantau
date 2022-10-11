@@ -61,6 +61,8 @@
                                 <th>Jenis Contoh Uji</th>
                                 <th>Tanggal Contoh Uji Diterima</th>
                                 <th>Titik Pengambilan Contoh Uji</th>
+                                <th>File Scan</th>
+                                <th>Tindakan Penanganan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,15 +71,19 @@
                             <?php foreach($limbah as $row) : ?>
                             <tr>
                                 <td>
-                                    <div class="input-group">
-                                        <a href="#" class="btn btn-sm btn-primary"
+                                    <div class="button-group">
+                                        <button type="button" class="btn btn-sm btn-primary"
                                             onclick="cetak_print_limbah_udara('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-printer"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger"
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger"
                                             onclick="delete_limbah_udara('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-trash"></i>
-                                        </a>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info"
+                                            onclick="show_limbah_emisi_udara('<?php echo $row->file_name ?>')">
+                                            <i class="bx bx-show"></i>
+                                        </button>
                                     </div>
                                 </td>
                                 <td style="text-align: center;"><?php echo $no++; ?></td>
@@ -89,7 +95,7 @@
                                 </td>
                                 <?php }else{ ?>
                                 <td>
-                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                    <button type="button" class="btn btn-success"><?= $row->status; ?><span
                                             class="badge bg-dark"></span>
                                     </button>
                                 </td>
@@ -102,6 +108,8 @@
                                 <td><?php echo $row->contoh_uji; ?></td>
                                 <td><?php echo $row->tanggal_contoh_uji; ?></td>
                                 <td><?php echo $row->titik_uji; ?></td>
+                                <td><a href="#"><?php echo $row->file_name; ?></a></td>
+                                <td><?php echo $row->tindakan; ?></td>
                             </tr>
                             <?php endforeach; ?>
                             <?php } ?>
@@ -127,41 +135,53 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-grup">
-                            <label for="" class="form-label">No.Sertifikat</label>
-                            <input type="text" name="no_sertifikat_udara" id="no_sertifikat_udara" class="form-control"
-                                placeholder="Masukkan No.Sertifikat">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Nama Pemohon</label>
-                            <input type="text" name="nama_pemohon_udara" id="nama_pemohon_udara" class="form-control"
-                                placeholder="No Pemohon">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Alamat Pemohon</label>
-                            <textarea name="alamat_pemohon_udara" id="alamat_pemohon_udara" cols="2" rows="2"
-                                class="form-control">
+                        <form enctype="multipart/form-data" id="form_insert_emisi_udara">
+                            <div class="form-grup">
+                                <label for="" class="form-label">No.Sertifikat</label>
+                                <input type="text" name="no_sertifikat_udara" id="no_sertifikat_udara"
+                                    class="form-control" placeholder="Masukkan No.Sertifikat">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Nama Pemohon</label>
+                                <input type="text" name="nama_pemohon_udara" id="nama_pemohon_udara"
+                                    class="form-control" placeholder="No Pemohon">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Alamat Pemohon</label>
+                                <textarea name="alamat_pemohon_udara" id="alamat_pemohon_udara" cols="2" rows="2"
+                                    class="form-control">
                             </textarea>
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Lokasi Kegiatan</label>
-                            <input type="text" name="lokasi_udara" id="lokasi_udara" class="form-control">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Jenis Contoh Uji</label>
-                            <input type="text" name="jenis_contoh_udara" id="jenis_contoh_udara" class="form-control"
-                                placeholder="Jenis Contoh uji">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Tanggal Contoh Uji</label>
-                            <input type="date" name="tanggal_contoh_udara" id="tanggal_contoh_udara"
-                                class="form-control" placeholder="Tanggal Contoh Uji">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Titik Pengambilan Contoh Uji</label>
-                            <input type="text" name="titik_contoh_udara" id="titik_contoh_udara" class="form-control"
-                                placeholder="Titik Pengambilan Contoh Uji">
-                        </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Lokasi Kegiatan</label>
+                                <input type="text" name="lokasi_udara" id="lokasi_udara" class="form-control">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Jenis Contoh Uji</label>
+                                <input type="text" name="jenis_contoh_udara" id="jenis_contoh_udara"
+                                    class="form-control" placeholder="Jenis Contoh uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Tanggal Contoh Uji</label>
+                                <input type="date" name="tanggal_contoh_udara" id="tanggal_contoh_udara"
+                                    class="form-control" placeholder="Tanggal Contoh Uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Titik Pengambilan Contoh Uji</label>
+                                <input type="text" name="titik_contoh_udara" id="titik_contoh_udara"
+                                    class="form-control" placeholder="Titik Pengambilan Contoh Uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <h6>Upload Hasil Pengujian Laboratorium</h6>
+                                <input id="dokumen3" type="file" name="dokumen3"
+                                    accept=".jpg, .png, image/jpeg, image/png, .pdf" multiple>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label for="">Deskripsi Tindakan Setelah Penanganan</label>
+                                <textarea name="tindakan_penanganan" class="form-control" rows="5" cols="5"></textarea>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
                 <div class="row pt-5">
@@ -232,4 +252,28 @@
     </div>
 </div>
 
+<!-- Modal show Detail Scanner -->
+<div id="modal-scan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">File - Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <embed id="element-domestik" frameborder="0" width="100%" height="1000
+                        px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->EndSection(); ?>

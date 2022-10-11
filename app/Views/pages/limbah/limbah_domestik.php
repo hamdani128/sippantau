@@ -49,6 +49,8 @@
                                 <th>Jenis Contoh Uji</th>
                                 <th>Tanggal Contoh Uji Diterima</th>
                                 <th>Titik Pengambilan Contoh Uji</th>
+                                <th>File Scanncer</th>
+                                <th>Tindakan</th>
                             </tr>
                         </thead>
                         <tbody id="tbody_limbah_domestik">
@@ -57,15 +59,19 @@
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td>
-                                    <div class="input-group">
-                                        <a href="#" class="btn btn-sm btn-primary"
+                                    <div class="button-group">
+                                        <button type="button" class="btn btn-sm btn-primary"
                                             onclick="cetak_print_limbah_domestik('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-printer"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger"
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger"
                                             onclick="delete_limbah_domestik('<?php echo $row->register_id ?>')">
                                             <i class="bx bx-trash"></i>
-                                        </a>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info"
+                                            onclick="show_limbah_domestik('<?php echo $row->file_name ?>')">
+                                            <i class="bx bx-show"></i>
+                                        </button>
                                     </div>
                                 </td>
                                 <?php if($row->status == 'menunggu approval') { ?>
@@ -76,7 +82,7 @@
                                 </td>
                                 <?php }else{ ?>
                                 <td>
-                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                    <button type="button" class="btn btn-success"><?= $row->status; ?><span
                                             class="badge bg-dark"></span>
                                     </button>
                                 </td>
@@ -89,6 +95,8 @@
                                 <td><?= $row->contoh_uji; ?></td>
                                 <td><?= $row->tanggal_contoh_uji; ?></td>
                                 <td><?= $row->titik_uji; ?></td>
+                                <td><a href="#"><?= $row->file_name; ?></a></td>
+                                <td><?= $row->tindakan; ?></td>
                             </tr>
                             <?php endforeach; ?>
                             <?php } ?>
@@ -114,40 +122,52 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-grup">
-                            <label for="" class="form-label">No.Sertifikat</label>
-                            <input type="text" name="no_sertifikat" id="no_sertifikat" class="form-control"
-                                placeholder="Masukkan No.Sertifikat">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Nama Pemohon</label>
-                            <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control"
-                                placeholder="No Pemohon">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Alamat Pemohon</label>
-                            <textarea name="alamat_pemohon" id="alamat_pemohon" cols="2" rows="2" class="form-control">
+                        <form enctype="multipart/form-data" id="form_insert_domestik">
+                            <div class="form-grup">
+                                <label for="" class="form-label">No.Sertifikat</label>
+                                <input type="text" name="no_sertifikat" id="no_sertifikat" class="form-control"
+                                    placeholder="Masukkan No.Sertifikat">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Nama Pemohon</label>
+                                <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control"
+                                    placeholder="No Pemohon">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Alamat Pemohon</label>
+                                <textarea name="alamat_pemohon" id="alamat_pemohon" cols="2" rows="2"
+                                    class="form-control">
                             </textarea>
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Lokasi Kegiatan</label>
-                            <input type="text" name="lokasi" id="lokasi" class="form-control">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Jenis Contoh Uji</label>
-                            <input type="text" name="jenis_contoh" id="jenis_contoh" class="form-control"
-                                placeholder="Jenis Contoh uji">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Tanggal Contoh Uji</label>
-                            <input type="date" name="tanggal_contoh" id="tanggal_contoh" class="form-control"
-                                placeholder="Tanggal Contoh Uji">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Titik Pengambilan Contoh Uji</label>
-                            <input type="text" name="titik_contoh" id="titik_contoh" class="form-control"
-                                placeholder="Titik Pengambilan Contoh Uji">
-                        </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Lokasi Kegiatan</label>
+                                <input type="text" name="lokasi" id="lokasi" class="form-control">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Jenis Contoh Uji</label>
+                                <input type="text" name="jenis_contoh" id="jenis_contoh" class="form-control"
+                                    placeholder="Jenis Contoh uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Tanggal Contoh Uji</label>
+                                <input type="date" name="tanggal_contoh" id="tanggal_contoh" class="form-control"
+                                    placeholder="Tanggal Contoh Uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Titik Pengambilan Contoh Uji</label>
+                                <input type="text" name="titik_contoh" id="titik_contoh" class="form-control"
+                                    placeholder="Titik Pengambilan Contoh Uji">
+                            </div>
+                            <div class="form-group pt-2">
+                                <h6>Upload Hasil Pengujian Laboratorium</h6>
+                                <input id="dokumen1" type="file" name="dokumen1"
+                                    accept=".jpg, .png, image/jpeg, image/png, .pdf" multiple>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label for="">Deskripsi Tindakan Setelah Penanganan</label>
+                                <textarea name="tindakan_penanganan" class="form-control" rows="5" cols="5"></textarea>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="row pt-5">
@@ -218,4 +238,29 @@
     </div>
 </div>
 
+
+<!-- Modal show Detail Scanner -->
+<div id="modal-scan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">File - Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <embed id="element-domestik" frameborder="0" width="100%" height="1000
+                        px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->EndSection(); ?>

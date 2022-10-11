@@ -38,7 +38,9 @@ function InsertLimbahB3() {
     var bidang_usaha = $("#bidang_usaha").val();
     var periode_mulai = $("#mulai").val();
     var periode_sampai = $("#sampai").val();
-
+    var formupload = document.getElementById("form_insert_limbahb3");
+    var formdata = new FormData(formupload);
+    formdata.append('id_register', id_transaksi);
     if (nama_perusahaan == '' || bidang_usaha == '' || periode_mulai == '' || periode_sampai == '') {
         Swal.fire({ icon: 'error', title: 'Oops...', text: 'Data tidak boleh kosong!' });
     } else {
@@ -46,13 +48,11 @@ function InsertLimbahB3() {
         $.ajax({
             url: "/limbah1/insert_limbah_b3",
             method: "POST",
-            data: {
-                id_register: id_transaksi,
-                nama_perusahaan: nama_perusahaan,
-                bidang_usaha: bidang_usaha,
-                periode_mulai: periode_mulai,
-                periode_sampai: periode_sampai
-            },
+            denctype: "multipart/form-data",
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,
+            data: formdata,
+            dataType: "json",
             success: function (data) {
                 Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Data berhasil disimpan!' });
                 window.location.href = "/pages/limbah_b3";
@@ -122,4 +122,10 @@ function delete_limbah_b3(register_id) {
             });
         }
     });
+}
+
+function show_limbahb3(dokumen) {
+    $("#modal-scan").modal("show");
+    // document.getElementById("element-domestik").remove();
+    document.getElementById("element-domestik").src = "/upload/" + dokumen;
 }

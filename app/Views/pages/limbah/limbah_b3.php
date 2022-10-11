@@ -46,6 +46,8 @@
                                 <th>Nama Perusahaan</th>
                                 <th>Bidang Usaha</th>
                                 <th>Periode</th>
+                                <th>File Scan</th>
+                                <th>Tindakan Penanganan</th>
                                 <th>created_at</th>
                             </tr>
                         </thead>
@@ -55,15 +57,19 @@
                             <?php foreach($limbah as $row) : ?>
                             <tr>
                                 <td>
-                                    <div class="input-group">
-                                        <a href="#" class="btn btn-sm btn-primary"
+                                    <div class="button-group">
+                                        <button type="button" class="btn btn-sm btn-primary"
                                             onclick="cetak_print_limbahb3('<?php echo $row->id_register ?>')">
                                             <i class="bx bx-printer"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger"
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger"
                                             onclick="delete_limbah_b3('<?php echo $row->id_register ?>')">
                                             <i class="bx bx-trash"></i>
-                                        </a>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info"
+                                            onclick="show_limbahb3('<?php echo $row->file_name ?>')">
+                                            <i class="bx bx-show"></i>
+                                        </button>
                                     </div>
                                 </td>
                                 <td><?php echo $no++; ?></td>
@@ -75,7 +81,7 @@
                                 </td>
                                 <?php }else{ ?>
                                 <td>
-                                    <button type="button" class="btn btn-success">?= $row->status; ?><span
+                                    <button type="button" class="btn btn-success"><?= $row->status; ?><span
                                             class="badge bg-dark"></span>
                                     </button>
                                 </td>
@@ -85,6 +91,8 @@
                                 <td><?php echo $row->nama_perusahaan ?></td>
                                 <td><?php echo $row->bidang ?></td>
                                 <td><?php echo $row->periode ?></td>
+                                <td><a href=""><?php echo $row->file_name ?></a></td>
+                                <td><?php echo $row->tindakan ?></td>
                                 <td><?php echo $row->updated_at; ?></td>
                                 <?php endforeach; ?>
                                 <?php } ?>
@@ -102,7 +110,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="my-modal-title">Tambah Data Air Limbah</h5>
+                <h5 class="modal-title" id="my-modal-title">Tambah Data Limbah B3</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,26 +118,37 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="" id="id_register"><?= $id_registrasi; ?></label>
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Nama Perusahaan</label>
-                            <input type="text" name="nama_perusahaan" id="nama_perusahaan" class="form-control"
-                                placeholder="No Pemohon">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Bidang Usaha</label>
-                            <input type="text" name="bidang_usaha" id="bidang_usaha" class="form-control">
-                        </div>
-                        <div class="form-group pt-2">
-                            <label class="form-label">Periode</label>
-                            <div class="input-group">
-                                <input type="date" name="mulai" id="mulai" class="form-control">
-                                <h6 style="margin-left: 2px;margin-right: 2px;"> To </h6>
-                                <input type="date" name="sampai" id="sampai" class="form-control">
+                        <form enctype="multipart/form-data" id="form_insert_limbahb3">
+                            <div class="form-group">
+                                <label for="" id="id_register"><?= $id_registrasi; ?></label>
                             </div>
-                        </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Nama Perusahaan</label>
+                                <input type="text" name="nama_perusahaan" id="nama_perusahaan" class="form-control"
+                                    placeholder="Nama Pemohon">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Bidang Usaha</label>
+                                <input type="text" name="bidang_usaha" id="bidang_usaha" class="form-control">
+                            </div>
+                            <div class="form-group pt-2">
+                                <label class="form-label">Periode</label>
+                                <div class="input-group">
+                                    <input type="date" name="mulai" id="mulai" class="form-control">
+                                    <h6 style="margin-left: 2px;margin-right: 2px;"> To </h6>
+                                    <input type="date" name="sampai" id="sampai" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <h6>Upload Hasil Pengujian Laboratorium</h6>
+                                <input id="dokumen4" type="file" name="dokumen4"
+                                    accept=".jpg, .png, image/jpeg, image/png, .pdf" multiple>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label for="">Deskripsi Tindakan Setelah Penanganan</label>
+                                <textarea name="tindakan_penanganan" class="form-control" rows="5" cols="5"></textarea>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="row pt-5">
@@ -200,5 +219,30 @@
     </div>
 </div>
 <!-- Modal End Data B3 -->
+
+<!-- Modal show Detail Scanner -->
+<div id="modal-scan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">File - Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <embed id="element-domestik" frameborder="0" width="100%" height="1000
+                        px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <?= $this->EndSection(); ?>

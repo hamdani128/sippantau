@@ -1,5 +1,4 @@
 function loadDataLimbahDomestik() {
-
     var tbody = document.getElementById("pengajuan_list");
     tbody.innerHTML = '<tr><td colspan="12"><h7> Mohon Tunggu Sebentar Data Lagi Dirender.. </h7></td></tr>';
     $.ajax({
@@ -80,6 +79,8 @@ function insert_data_limbah_air_domestik() {
     var jenis_contoh = $('#jenis_contoh').val();
     var tanggal_contoh = $('#tanggal_contoh').val();
     var titik_contoh = $('#titik_contoh').val();
+    var formupload = document.getElementById("form_insert_domestik");
+    var formdata = new FormData(formupload);
     if (no_sertifikat == '' || nama_pemohon == '' || alamat_pemohon == '' || lokasi == '' || jenis_contoh == '' || tanggal_contoh == '' || titik_contoh == '') {
         Swal.fire({
             icon: 'error',
@@ -91,16 +92,11 @@ function insert_data_limbah_air_domestik() {
         $.ajax({
             url: "/limbah/insert_limbah_air_domestik",
             method: "POST",
-            data: {
-                no_sertifikat: no_sertifikat,
-                nama_pemohon: nama_pemohon,
-                alamat_pemohon: alamat_pemohon,
-                lokasi: lokasi,
-                jenis_contoh: jenis_contoh,
-                tanggal_contoh: tanggal_contoh,
-                titik_contoh: titik_contoh,
-            },
-            // dataType: "json",
+            enctype: "multipart/form-data",
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,
+            data: formdata,
+            dataType: "json",
             success: function (data) {
                 // data = JSON.parse(data);
                 Swal.fire({
@@ -175,4 +171,10 @@ function delete_limbah_domestik(register_id) {
             });
         }
     });
+}
+
+function show_limbah_domestik(dokumen) {
+    $("#modal-scan").modal("show");
+    // document.getElementById("element-domestik").remove();
+    document.getElementById("element-domestik").src = "/upload/" + dokumen;
 }

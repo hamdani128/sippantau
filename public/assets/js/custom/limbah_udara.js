@@ -39,7 +39,8 @@ function insert_limbah_udara() {
     var jenis_contoh = $('#jenis_contoh_udara').val();
     var tanggal_contoh = $('#tanggal_contoh_udara').val();
     var titik_contoh = $('#titik_contoh_udara').val();
-
+    var formupload = document.getElementById("form_insert_emisi_udara");
+    var formdata = new FormData(formupload);
     if (no_sertifikat == '') {
         Swal.fire({
             icon: 'error',
@@ -51,16 +52,11 @@ function insert_limbah_udara() {
         $.ajax({
             url: "/limbah1/insert_limbah_udara",
             method: "POST",
-            data: {
-                no_sertifikat: no_sertifikat,
-                nama_pemohon: nama_pemohon,
-                alamat_pemohon: alamat_pemohon,
-                lokasi: lokasi,
-                jenis_contoh: jenis_contoh,
-                tanggal_contoh: tanggal_contoh,
-                titik_contoh: titik_contoh,
-            },
-            // dataType: "JSON",
+            enctype: "multipart/form-data",
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,
+            data: formdata,
+            dataType: "json",
             success: function (data) {
                 // data = JSON.parse(data);
                 Swal.fire({
@@ -136,4 +132,10 @@ function delete_limbah_udara(register_id) {
             });
         }
     });
+}
+
+function show_limbah_emisi_udara(dokumen) {
+    $("#modal-scan").modal("show");
+    // document.getElementById("element-domestik").remove();
+    document.getElementById("element-domestik").src = "/upload/" + dokumen;
 }

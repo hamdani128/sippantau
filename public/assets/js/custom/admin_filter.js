@@ -32,7 +32,7 @@ function filter1() {
                         tr += `<tr>
                         <td>
                             <button class="btn btn-sm btn-dark" onclick="cetak_print_limbah_domestik('${data[i].register_id}')"><i class="bx bx-printer"></i></button>
-                            <button class="btn btn-sm btn-success"><i class="bx bx-show"></i></button>
+                            <button class="btn btn-sm btn-success"  onclick="show_limbah_domestik('${data[i].file_name}')"><i class="bx bx-show"></i></button>
                             <button class="btn btn-sm btn-info" onclick="update_approve_limbah_air_domestik('${data[i].status}', '${data[i].register_id}')"><i class="bx bx-edit"></i></button>
                         </td>
                         <td align="center">${no++}</td>
@@ -46,6 +46,8 @@ function filter1() {
                         <td>${data[i].contoh_uji}</td>
                         <td>${data[i].tanggal_contoh_uji}</td>
                         <td>${data[i].titik_uji}</td>
+                        <td><a href="#">${data[i].file_name}</a></td>
+                        <td>${data[i].tindakan}</td>
                 </tr>`;
                     }
                     tbody.innerHTML = tr;
@@ -89,7 +91,7 @@ function filter2() {
                         tr += `<tr>
                         <td>
                             <button class="btn btn-sm btn-dark" onclick="cetak_print_limbah_air_kegiatan('${data[i].register_id}')"><i class="bx bx-printer"></i></button>
-                            <button class="btn btn-sm btn-success"><i class="bx bx-show"></i></button>
+                            <button class="btn btn-sm btn-success"  onclick="show_limbah_air_kegiatan('${data[i].file_name}')"><i class="bx bx-show"></i></button>
                             <button class="btn btn-sm btn-info" onclick="update_approve_limbah_air_kegiatan('${data[i].status}', '${data[i].register_id}')"><i class="bx bx-edit"></i></button>
                         </td>
                         <td align="center">${no++}</td>
@@ -103,6 +105,8 @@ function filter2() {
                         <td>${data[i].contoh_uji}</td>
                         <td>${data[i].tanggal_contoh_uji}</td>
                         <td>${data[i].titik_uji}</td>
+                        <td><a href="#">${data[i].file_name}</a></td>
+                        <td>${data[i].tindakan}</td>
                 </tr>`;
                     }
                     tbody.innerHTML = tr;
@@ -146,7 +150,7 @@ function filter3() {
                         tr += `<tr>
                         <td>
                             <button class="btn btn-sm btn-dark" onclick="cetak_print_limbah_udara('${data[i].register_id}')"><i class="bx bx-printer"></i></button>
-                            <button class="btn btn-sm btn-success"><i class="bx bx-show"></i></button>
+                            <button class="btn btn-sm btn-success" onclick="show_limbah_emisi_udara('${data[i].file_name}')"><i class="bx bx-show"></i></button>
                             <button class="btn btn-sm btn-info" onclick="update_approve_limbah_emisi_udara('${data[i].status}', '${data[i].register_id}')"><i class="bx bx-edit"></i></button>
                         </td>
                         <td align="center">${no++}</td>
@@ -160,6 +164,8 @@ function filter3() {
                         <td>${data[i].contoh_uji}</td>
                         <td>${data[i].tanggal_contoh_uji}</td>
                         <td>${data[i].titik_uji}</td>
+                        <td><a href="#">${data[i].file_name}</a></td>
+                        <td>${data[i].tindakan}</td>
                 </tr>`;
                     }
                     tbody.innerHTML = tr;
@@ -203,7 +209,7 @@ function filter4() {
                         tr += `<tr>
                         <td>
                             <button class="btn btn-sm btn-dark" onclick="cetak_print_limbahb3('${data[i].id_register}')"><i class="bx bx-printer"></i></button>
-                            <button class="btn btn-sm btn-success"><i class="bx bx-show"></i></button>
+                            <button class="btn btn-sm btn-success" onclick="show_limbahb3('${data[i].file_name}')"><i class="bx bx-show"></i></button>
                             <button class="btn btn-sm btn-info" onclick="update_approve_limbah_b3('${data[i].status}', '${data[i].id_register}')"><i class="bx bx-edit"></i></button>
                         </td>
                         <td align="center">${no++}</td>
@@ -214,6 +220,8 @@ function filter4() {
                         <td>${data[i].nama_perusahaan}</td>
                         <td>${data[i].bidang}</td>
                         <td>${data[i].periode}</td>
+                        <td><a href="#">${data[i].file_name}</a></td>
+                        <td>${data[i].tindakan}</td>
                         <td>${data[i].created_at}</td>
                 </tr>`;
                     }

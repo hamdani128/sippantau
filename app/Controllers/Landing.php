@@ -104,7 +104,8 @@ class Landing extends BaseController
         $jenis = $this->request->getPost('jenis');
         $nomor_terbit = $this->request->getPost('nomor_terbit');
         $pemberi_izin = $this->request->getPost('pemberi_izin');
-        $keterangan = $this->request->getPost('keterangan');        $filename = $_FILES['file_berkas'];
+        $keterangan = $this->request->getPost('keterangan');        
+        $filename = $_FILES['file_berkas'];
         $randomFileName = rand(1, 1000000);
         $ext = pathinfo($filename['name'], PATHINFO_EXTENSION);
         $fileNameRand = $randomFileName . '.' . $ext;
